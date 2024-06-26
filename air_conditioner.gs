@@ -13,6 +13,7 @@ function Airconditioner_ON() {
     "button":""
   }
   };
+  var data = devicedata();
 
   var reply = UrlFetchApp.fetch(url, options);
   
@@ -32,6 +33,7 @@ function Airconditioner_OFF() {
     "button":"power-off"
   }
   };
+  var data = devicedata();
 
   var reply = UrlFetchApp.fetch(url, options);
 
