@@ -7,18 +7,19 @@ function getNatureRemoDatas(target){
 
   var url = "https://api.nature.global/1/" + target;
   var headers = {
-    "Content-Type" : "application/json;",
+    "Content-Type" : 'application/json;',
     'Authorization': 'Bearer ' + ACCESS_TOKEN,
   };
   var options = {
     "method" : "get",
     "headers" : headers,
+    //"muteHttpExceptions" : true
   };
   return JSON.parse(UrlFetchApp.fetch(url, options));//データを取得
 }
 
 function getdeviceid() {
-  var data = getNatureRemoDatas("appliances");//データを取得
+  var data = getNatureRemoData("appliances");//データを取得
   var device_id = 0;
   data.forEach(function(e) {
     
