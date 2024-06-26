@@ -1,17 +1,10 @@
-var ACCESS_TOKEN = '';//remoアクセストークン
-/*function GetDeviceId(){
-    var url = "https://api.nature.global/1/appliances/" +token +"/appsscript.json"
-    var options = {
-      "method" : "get",
-      "headers" : {"Authorization" : "Bearer [d_AZCZDsHPSmcDxwjHSgYxf4R44QSecWhZo3WH6ElxU.lIsHAVDbRx60oV9pzLZUJo5KuvBy9uFt0jrzyPChCsg]"}
-    };
-    var reply = UrlFetchApp.fetch(url, options);
-    Logger.log(reply)
-}*/
-function getNatureRemoData(target){
+var TIME_ZONE = 'Asia/Tokyo';
+var NICKNAME_AIR_CONDITIONER = 'エアコン';
+//var ACCESS_TOKEN = '';//remoアクセストークン
+function getNatureRemoDatas(target){
   if (typeof ACCESS_TOKEN === 'undefined') throw new Error('Set ACCESS_TOKEN'); 
 
-  var url = "https://api.nature.global/1/appliances" ;
+  var url = "https://api.nature.global/1/" + target;
   var headers = {
     "Content-Type" : "application/json;",
     'Authorization': 'Bearer ' + ACCESS_TOKEN,
@@ -20,6 +13,17 @@ function getNatureRemoData(target){
     "method" : "get",
     "headers" : headers,
   };
-  var reply = UrlFetchApp.fetch(url, options);
-    Logger.log(reply)
+  return JSON.parse(UrlFetchApp.fetch(url, options));//データを取得
+}
+
+function getdeviceid() {
+  var data = getNatureRemoDatas("appliances");//データを取得
+  var device_id = 0;
+  data.forEach(function(e) {
+    
+    device_id = e.id;//デバイスid
+    
+  });
+  
+  return device_id;
 }
