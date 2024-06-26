@@ -2,6 +2,7 @@ var TIME_ZONE = 'Asia/Tokyo';
 var NICKNAME_AIR_CONDITIONER = 'エアコン';
 //var ACCESS_TOKEN = '';//remoアクセストークン
 function getNatureRemoDatas(target){
+  var ACCESS_TOKEN = GetREMOACCESSTOKEN();
   if (typeof ACCESS_TOKEN === 'undefined') throw new Error('Set ACCESS_TOKEN'); 
 
   var url = "https://api.nature.global/1/" + target;
@@ -24,6 +25,7 @@ function getdeviceid() {
     device_id = e.id;//デバイスid
     
   });
+  Logger.log(device_id)
   
   return device_id;
 }
