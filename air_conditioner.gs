@@ -1,6 +1,7 @@
-var token = 'remo トークン';//remo トークン
-var deviceId = "";//デバイス id
+var token = '';//remo トークン
+
 function Airconditioner_ON() {
+  var deviceId = getdeviceid();
   var url = "https://api.nature.global/1/appliances/" + deviceId + "/aircon_settings"; // Nature Remo3 APIのエアコン設定エンドポイント
 
   var options = {
@@ -18,6 +19,7 @@ function Airconditioner_ON() {
 }
 
 function Airconditioner_OFF() {
+  var deviceId = getdeviceid();
   var url = "https://api.nature.global/1/appliances/" + deviceId + "/aircon_settings"; // Nature Remo3 APIのエアコン設定エンドポイント
 
 
