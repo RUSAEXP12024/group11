@@ -1,7 +1,7 @@
+var origin = '34.98291353169776, 135.9621180593622'; //出発地(ここで立命館)
+var destination = '34.820729001137906, 135.5824031194032';　//目的地（ホーム）
 //経路時間を出して、その時間を返す(単位：分)
-function calculateTravelTime() {
-  var origin = '34.98291353169776, 135.9621180593622';
-  var destination = '34.820729001137906, 135.5824031194032';
+function calculateTravelTime(origin,destination) {
   var directions = Maps.newDirectionFinder()
     .setOrigin(origin)
     .setDestination(destination)
