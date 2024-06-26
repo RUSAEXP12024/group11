@@ -43,13 +43,14 @@ function go_home() {
         if (checkLocationFormat(origin)) {
           var go_home_time = calculateTravelTime(origin, home_address); // calculateTravelTime の実装は省略されています
           if (go_home_time <= SHORTEST_TIME) {
-            clearInterval(interval); // 10分以内に到着する場合はループを終了します
+            clearInterval(interval); // 10分以内に到着する場合はループを終了する
+            Airconditioner_ON(); //エアコンを開ける
           }
         }
       })
       .catch(function(error) {
         console.error('位置情報の取得中にエラーが発生しました：', error);
-        clearInterval(interval); // エラーが発生した場合もループを終了します
+        clearInterval(interval); // エラーが発生した場合もループを終了する
       });
   }, CHECK_TIME * 60 * 1000); // 10分ごとに実行（ミリ秒単位で指定）,timer?!
 }
