@@ -4,7 +4,8 @@ Remo・家電操作
 |-time_set.gs             //指定した時間にプログラムが起動するトリガーを作成する
 |-air_conditioner.gs      //エアコンのオン・オフを管理する
 |-Airconditionerdata.gs   //エアコンのオンオフや設定温度などといったデータを取得する
-|-Airconditionerdata.gs
+|-ger_deviceID.gs         //remoからデバイスidを取得する
+|-remo.gs                 //remoからデータを取得する
 
 経路操作
 |-route.gs                //経路時間を算出し、その時間を返す
