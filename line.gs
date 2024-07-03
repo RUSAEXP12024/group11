@@ -1,20 +1,24 @@
-//修正してほしい
+// line関連
 
 // LINEボットを使ってメッセージを送信する関数
+function sendLineMessage(postText){
+   const url = 'https://api.line.me/v2/bot/message/push';
+  
+  const payload = {
+    to: line_userid,　//ユーザーID
+    messages: [
+      { type: 'text', text: postText}
+    ]
+  };
 
-function sendLineMessage(message) {
-  return fetch('https://api.line.me/v2/bot/message/push', {
-    method: 'POST',
+  const params = {
+    method: 'post',
+    contentType: 'application/json',
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer {LINE_BOT_ACCESS_TOKEN}'
+      Authorization: 'Bearer ' + access_token_line
     },
-    body: JSON.stringify({
-      to: '{USER_ID}',
-      messages: [{
-        type: 'text',
-        text: message
-      }]
-    })
-  });
+    payload: JSON.stringify(payload)
+  };
+  UrlFetchApp.fetch(url, params);
+  //UrlFetchApp.fetch(url, options);
 }
