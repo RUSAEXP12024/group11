@@ -1,26 +1,20 @@
-// line関連
-var access_token_line = ''//lineアクセストークン
-var line_userid =''//line userid
+//修正してほしい
 
 // LINEボットを使ってメッセージを送信する関数
-function sendLineMessage(postText){
-   const url = 'https://api.line.me/v2/bot/message/push';
-  
-  const payload = {
-    to: line_userid,　//ユーザーID
-    messages: [
-      { type: 'text', text: postText}
-    ]
-  };
 
-  const params = {
-    method: 'post',
-    contentType: 'application/json',
+function sendLineMessage(message) {
+  return fetch('https://api.line.me/v2/bot/message/push', {
+    method: 'POST',
     headers: {
-      Authorization: 'Bearer ' + access_token_line
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer {LINE_BOT_ACCESS_TOKEN}'
     },
-    payload: JSON.stringify(payload)
-  };
-  UrlFetchApp.fetch(url, params);
-  //UrlFetchApp.fetch(url, options);
+    body: JSON.stringify({
+      to: '{USER_ID}',
+      messages: [{
+        type: 'text',
+        text: message
+      }]
+    })
+  });
 }
