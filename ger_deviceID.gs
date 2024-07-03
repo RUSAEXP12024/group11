@@ -1,7 +1,7 @@
 var TIME_ZONE = 'Asia/Tokyo';
 var NICKNAME_AIR_CONDITIONER = 'エアコン';
 //var ACCESS_TOKEN = '';//remoアクセストークン
-function getNatureRemoDatas(target){
+/*function getNatureRemoDatas(target){
   var ACCESS_TOKEN = GetREMOACCESSTOKEN();
   if (typeof ACCESS_TOKEN === 'undefined') throw new Error('Set ACCESS_TOKEN'); 
 
@@ -13,10 +13,10 @@ function getNatureRemoDatas(target){
   var options = {
     "method" : "get",
     "headers" : headers,
-    //"muteHttpExceptions" : true
+    "muteHttpExceptions" : true
   };
   return JSON.parse(UrlFetchApp.fetch(url, options));//データを取得
-}
+}*/
 
 function getdeviceid() {
   var data = getNatureRemoData("appliances");//データを取得
@@ -26,7 +26,6 @@ function getdeviceid() {
     device_id = e.id;//デバイスid
     
   });
-  Logger.log(device_id)
   
   return device_id;
 }
