@@ -13,6 +13,7 @@ Remo・家電操作
 
 line
 |-line.gs                 //メッセージを送る
+|-Airconditioner_messege.gs　//エアコンのオンオフをLINE上で通知する
 ```
 
 
