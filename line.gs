@@ -1,4 +1,6 @@
 // line関連
+var access_token_line = ''//lineアクセストークン
+var line_userid =''//line userid
 
 // LINEボットを使ってメッセージを送信する関数
 function sendLineMessage(postText){
