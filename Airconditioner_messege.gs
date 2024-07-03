@@ -1,5 +1,4 @@
-var access_token_line = ''//lineアクセストークン
-var line_userid =''//line userid
+
 function Airconditioner_messege(messege){
   let data =devicedata();
   let text = '';
