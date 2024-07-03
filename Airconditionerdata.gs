@@ -1,6 +1,4 @@
 function devicedata() {
-  
-  const lastSensorData = getLastData("airconditioner");　　　　　//最終data取得
 
   var data_appliances = getNatureRemoData_Appliances() //家電ごとのデータを取得
 
@@ -19,10 +17,17 @@ function devicedata() {
   
   }
   
-
-  setAirconData(setLaremoData, lastSensorData + 1);//エアコンのデータをスプレッドシート入力
   return setLaremoData;
 }
+
+function recordAirconditionerData(){
+  const lastSensorData = getLastData("airconditioner");　　　　　//最終data取得
+  var AirconData = devicedata();
+
+  setAirconData(AirconData, lastSensorData + 1);//エアコンのデータをスプレッドシート入力
+
+}
+
 function getNatureRemoData_Appliances() {
   var ACCESS_TOKEN = GetREMOACCESSTOKEN();
   var url = "https://api.nature.global/1/appliances";
