@@ -1,11 +1,33 @@
 var origin = '34.98291353169776, 135.9621180593622'; //出発地(ここで立命館)
-var destination = '34.820729001137906, 135.5824031194032';　//目的地（ホーム）
+var destination = '34.820729001137906, 135.5824031194032'; //目的地（ホーム）
+var method ='WALKING';//WALING  || DRVING || BICYCLING || TRANSIT
+
+// function test(){
+//   calculateTravelTime(origin,destination,method);
+// }
+
 //経路時間を出して、その時間を返す(単位：分)
-function calculateTravelTime(origin,destination) {
+function calculateTravelTime(origin,destination, method) {
+  var mode;
+  if(method=='WALKING'){
+      mode = Maps.DirectionFinder.Mode.WALKING;
+  }
+  else if(method =="DRIVING"){
+      mode =Maps.DirectionFinder.Mode.DRIVING;
+  }
+  else if(method =="BICYCLING"){
+      mode =Maps.DirectionFinder.Mode.BICYCLING;
+    }
+  else if(method =="TRANSIT"){
+      mode =Maps.DirectionFinder.Mode.TRANSIT;
+  }else{
+    return -1;
+  }
+
   var directions = Maps.newDirectionFinder()
     .setOrigin(origin)
     .setDestination(destination)
-    .setMode(Maps.DirectionFinder.Mode.WALKING)
+    .setMode(mode)
     .getDirections();
  
   try {
@@ -30,7 +52,6 @@ function calculateTravelTime(origin,destination) {
   } catch (error) {
     //存在しない場所、たどり着けない場所などはエラー
     console.error(error);
-    console.log("done");
     return -1;//その場合は-1をreturn
   }
 }
