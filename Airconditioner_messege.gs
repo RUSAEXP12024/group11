@@ -27,6 +27,24 @@ function Airconditioner_messege(messege){
   
 }
 
+function AirconData_messege() {
+  let data =devicedata();
+  let text = '';
+  let time = getNowDate();
+  if(data.ac_state ==0){
+    text = 'offです' + '\n'
+          +'日時:' + time
+  }else if(data.ac_state ==1){
+    text = 'onです' + '\n'
+          + '設定温度:' + data.appliances1_temp + '\n'
+          + '運転モード;' +data.appliances1_vol +'\n'
+          +'日時:' + time
+  }else{
+    text = 'エラー'
+  }
+  Airconditioner_messegepush(text);
+}
+
 function SensorData_messege() {
   const deviceData = getNatureRemoData("devices");　　　　//data取得
   let text = '';
@@ -39,6 +57,8 @@ function SensorData_messege() {
   Airconditioner_messegepush(text);
 
 }
+
+
 
 function Airconditioner_messegepush(postText){
    const url = 'https://api.line.me/v2/bot/message/push';
