@@ -1,3 +1,6 @@
+類似関数：Airconditioner_messege：Airconditioner_messegepushとreplyToUser
+
+
 ```
 Remo・家電操作
 |-REMO_ACCESS_TOKEN.gs    //Remoのアクセストークンを管理する
