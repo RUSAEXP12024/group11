@@ -1,19 +1,22 @@
+//修正：メッセージ内容についての変更
 function doPost(e) {
   var replyToken = JSON.parse(e.postData.contents).events[0].replyToken;
   var userMessage = JSON.parse(e.postData.contents).events[0].message.text;
 
-  if (userMessage === 'エアコンオン') {
-    Airconditioner_ON();
-    replyToUser(replyToken, 'エアコンをオンにしました。');
-  } else if (userMessage === 'エアコンオフ') {
-    Airconditioner_OFF();
-    replyToUser(replyToken, 'エアコンをオフにしました。');
-  } else if (userMessage === '現在の室温') {
+  if (userMessage === 'オン') {
+    Airconditioner_ON(); //修正：Airconditioner_ON()すでにメッセージある
+    //replyToUser(replyToken, 'エアコンをオンにしました。'); 
+  } else if (userMessage === 'オフ') {
+    Airconditioner_OFF();　//修正：Airconditioner_OFF()すでにメッセージある
+    //replyToUser(replyToken, 'エアコンをオフにしました。');
+  } else if (userMessage === '気温・湿度') {
     var temperature = getCurrentTemperature();
     replyToUser(replyToken, '現在の室温は ' + temperature + ' 度です。');
-  } else if (userMessage === '現在の湿度') {
-    var humidity = getCurrentHumidity();
     replyToUser(replyToken, '現在の湿度は ' + humidity + '% です。');
+  } else if (userMessage === '自宅の位置を設定') {
+    home_setting();
+  } else if (userMessage === '帰宅') {
+    go_home();
   } else {
     replyToUser(replyToken, '「エアコンオン」「エアコンオフ」「現在の室温」「現在の湿度」のいずれかを入力してください。');
   }
@@ -65,3 +68,4 @@ function replyToUser(replyToken, message) {
   };
   UrlFetchApp.fetch(url, options);
 }
+
