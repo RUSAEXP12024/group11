@@ -74,10 +74,10 @@ function Airconditioner_messegepush(postText){
     method: 'post',
     contentType: 'application/json',
     headers: {
-      Authorization: 'Bearer ' + access_token_line
+      Authorization: 'Bearer ' + LINE_ACCESS_TOKEN
     },
     payload: JSON.stringify(payload)
   };
-  UrlFetchApp.fetch(url, params);
+  UrlFetchApp.fetch(url, params); //問題ありそう
   //UrlFetchApp.fetch(url, options);
 }
