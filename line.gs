@@ -7,7 +7,7 @@ function sendLineMessage(message) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer {LINE_BOT_ACCESS_TOKEN}'
+      'Authorization': 'Bearer LINE_ACCESS_TOKEN'
     },
     body: JSON.stringify({
       to: '{USER_ID}',

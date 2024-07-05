@@ -1,3 +1,6 @@
+/****************
+ * Remoデータの取得
+*****************/
 function getNatureRemoData(endpoint) {
   const REMO_ACCESS_TOKEN = GetREMOACCESSTOKEN();
   const headers = {

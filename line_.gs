@@ -5,9 +5,11 @@ function doPost(e) {
 
   if (userMessage === 'オン') {
     Airconditioner_ON(); //修正：Airconditioner_ON()すでにメッセージある
+    stop_go_home();
     //replyToUser(replyToken, 'エアコンをオンにしました。'); 
   } else if (userMessage === 'オフ') {
     Airconditioner_OFF();　//修正：Airconditioner_OFF()すでにメッセージある
+    stop_go_home();
     //replyToUser(replyToken, 'エアコンをオフにしました。');
   } else if (userMessage === '気温・湿度') {
     var temperature = getCurrentTemperature();
@@ -16,6 +18,7 @@ function doPost(e) {
   } else if (userMessage === '自宅の位置を設定') {
     home_setting();
   } else if (userMessage === '帰宅') {
+    stop_go_home();
     go_home();
   } else {
     replyToUser(replyToken, '「エアコンオン」「エアコンオフ」「現在の室温」「現在の湿度」のいずれかを入力してください。');
