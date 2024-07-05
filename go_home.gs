@@ -29,9 +29,26 @@ function checkLocationFormat(locationString) {
   return pattern.test(locationString);
 }
 
+
 // エアコンの状態を確認する関数（仮定：この関数はエアコンがオンかどうかを返す）
 function isAirConditionerOn() {
-  // 実際にはAPIリクエストを使ってエアコンの状態を確認する必要があります
+  var token = GetREMOACCESSTOKEN();
+  var deviceId = getdeviceid();
+  var url = "https://api.nature.global/1/appliances/" + deviceId + "/aircon_settings"; // Nature Remo3 APIのエアコン設定エンドポイント
+  var options = {
+    "method": "POST",
+    "headers": {
+    "Authorization": "Bearer " + token
+  },
+    "payload": {
+    "button":"power-off"
+  }
+  };
+  var data = devicedata();
+  if(data.ac_state ==1){ //オン
+    
+  }
+  else if(data.ac_state ==0)//オフ
   return fetch('https://api.example.com/airconditioner/status')
     .then(response => response.json())
     .then(data => data.isOn);
@@ -55,17 +72,7 @@ function go_home() {
 
                     if (go_home_time <= SHORTEST_TIME) {
                         isAirConditionerOn().then(isOn => {
-                            if (isOn) {
-                                console.log('エアコンは既にオンです。');
-                                sendLineMessage('エアコンは既にオンです。後続操作は実行されません。');
-                                clearInterval(isGoingHome);
-                                isGoingHome = false;
-                            } else {
-                                // エアコンをオンにする操作をここに追加する
-                                sendLineMessage('エアコンをオンにしました。');
-                                clearInterval(isGoingHome);
-                                isGoingHome = false;
-                            }
+                          
                         });
                     } else {
                         // 回家時間が20分以上の場合
