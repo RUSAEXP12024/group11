@@ -1,5 +1,5 @@
 // 定数と変数の設定
-var home_address = '34.98291353169776, 135.9621180593622'; 
+//var home_address = '34.98291353169776, 135.9621180593622'; 
 const CHECK_INTERVAL_MINUTES = 10; // チェック間隔（分）
 const SHORTEST_TIME = 10; // 最短帰宅時間（分）
 var METHOD = 'WALKING';
@@ -18,45 +18,23 @@ function checkLocationFormat(locationString) {
   return pattern.test(locationString);
 }
 
-function doPost(e) {
-  var postData = JSON.parse(e.postData.contents);
-  var events = postData.events;
-
-  if (events.length > 0 && events[0].message.type === 'location') {
-    var latitude = events[0].message.latitude;
-    var longitude = events[0].message.longitude;
-    var scriptProperties = PropertiesService.getScriptProperties();
-    scriptProperties.setProperty('latitude', latitude.toString());
-    scriptProperties.setProperty('longitude', longitude.toString());
-
-    Logger.log('緯度: ' + latitude + ', 経度: ' + longitude);
-  }
-
-  // 処理結果をJSON形式で返す
-  return ContentService.createTextOutput(JSON.stringify({ "result": "success" }))
-      .setMimeType(ContentService.MimeType.JSON);
-}
-
-/*function getCurrentLocation() {
-  var scriptProperties = PropertiesService.getScriptProperties();
-  var latitude = scriptProperties.getProperty('latitude');
-  var longitude = scriptProperties.getProperty('longitude');
-
-  if (latitude && longitude) {
-    var locationString = latitude + ', ' + longitude;
-    console.log('Current location: ' + locationString);
-    return locationString;
-  } else {
-    console.error('No location data available.');
-    return null;
-  }
-}
-*/
 
 
 // 現在の位置の取得
 function getCurrentLocation() {
-  return('34.98392353169776, 135.9931280593622');
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+
+  var location = sheet.getRange("B6").getValue();  
+  
+  //return('34.98392353169776, 135.9931280593622');
+  return location;
+}
+
+function get_home_address(){
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var location = sheet.getRange("B4").getValue();  
+  return('34.98291353169776, 135.9621180593622');
+  //return location;
 }
 
 // 実際の帰宅操作を行う関数
@@ -65,6 +43,7 @@ function go_home() {
     var origin = getCurrentLocation(); // 手動で位置情報を取得
     console.log('帰宅する位置:', origin);
     if (checkLocationFormat(origin)&&isGoingHome) {
+        var home_address = get_home_address();
         var go_home_time = calculateTravelTime(origin, home_address, METHOD); // 帰宅時間を計算
         console.log('帰宅時間:', go_home_time, '分');
         if (go_home_time <= SHORTEST_TIME) {
