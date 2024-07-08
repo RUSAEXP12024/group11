@@ -13,10 +13,12 @@ Remo・家電操作
 経路操作
 |-route.gs                //経路時間を算出し、その時間を返す
 |-go_home.gs              //現在位置の取得、帰宅機能
+|-home_setting.gs         //文字で自宅設定機能（排除可能）
 
 line
 |-line.gs                 //メッセージを送る
 |-Airconditioner_messege.gs　//エアコンのオンオフをLINE上で通知する
+|-line_test.gs //shortcut/lineからの請求の処理/自宅設定機能/あるセルの值をwrite
 
 short cut
 https://www.icloud.com/shortcuts/f558f84159d1452daf612cef2ed361c0 //帰宅機能の実現
