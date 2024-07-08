@@ -17,6 +17,9 @@ Remo・家電操作
 line
 |-line.gs                 //メッセージを送る
 |-Airconditioner_messege.gs　//エアコンのオンオフをLINE上で通知する
+
+short cut
+https://www.icloud.com/shortcuts/f558f84159d1452daf612cef2ed361c0 //帰宅機能の実現
 ```
 
 
