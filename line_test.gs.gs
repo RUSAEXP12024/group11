@@ -1,7 +1,19 @@
-/*
-//修正：メッセージ内容についての変更　
 function doPost(e) {
   var postData = JSON.parse(e.postData.contents);
+  if (postData.events) {
+    // LINEからのリクエストを処理
+    handleLineRequest(postData);
+  } else if (postData.value) {
+    // Apple Shortcutsからのリクエストを処理
+    handleShortcutRequest(postData.value);
+  } else {
+      Logger.log('Unknown request format');  
+      return ContentService.createTextOutput('Error: Unknown request format').setMimeType(ContentService.MimeType.TEXT);
+    }
+    return ContentService.createTextOutput('OK').setMimeType(ContentService.MimeType.TEXT);
+}
+
+function handleLineRequest(postData) {
   var events = postData.events;
   var replyToken = events[0].replyToken;
   var messageType = events[0].message.type;
@@ -35,6 +47,18 @@ function doPost(e) {
     handleLocation(latitude, longitude, replyToken);
   } else {
     replyToUser(replyToken, '「エアコンオン」「エアコンオフ」「現在の室温」「現在の湿度」のいずれかを入力してください。');
+  }
+}
+
+function handleShortcutRequest(value) {
+  // Shortcutsからのリクエストを処理
+  if (value === 'calculateGohometime') {
+    calculateGohometime();
+  } else if (value === 'air_on') {
+    Airconditioner_ON();
+  } else {
+    Logger.log('Unknown value in shortcut request: ' + value);
+    throw new Error('Unknown value in shortcut request');
   }
 }
 
@@ -113,5 +137,3 @@ function replyToUser(replyToken, message) {
   };
   UrlFetchApp.fetch(url, options);
 }
-
-*/

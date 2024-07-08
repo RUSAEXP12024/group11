@@ -25,6 +25,7 @@ function Airconditioner_messege(messege){
   }
   Airconditioner_messegepush(text);
   
+  
 }
 
 function AirconData_messege() {
@@ -43,6 +44,7 @@ function AirconData_messege() {
     text = 'エラー'
   }
   Airconditioner_messegepush(text);
+  
 }
 
 function SensorData_messege() {
@@ -55,7 +57,7 @@ function SensorData_messege() {
           + '湿度;' + deviceData[0].newest_events.hu.val
 
   Airconditioner_messegepush(text);
-
+ 
 }
 
 
@@ -74,10 +76,10 @@ function Airconditioner_messegepush(postText){
     method: 'post',
     contentType: 'application/json',
     headers: {
-      Authorization: 'Bearer ' + LINE_ACCESS_TOKEN
+      Authorization: 'Bearer ' + access_token_line
     },
     payload: JSON.stringify(payload)
   };
-  UrlFetchApp.fetch(url, params); //問題ありそう
+  UrlFetchApp.fetch(url, params); 
   //UrlFetchApp.fetch(url, options);
 }

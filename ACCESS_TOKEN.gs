@@ -12,7 +12,7 @@ var LINE_ACCESS_TOKEN = sheet.getRange('B1').getValue();
 var REMO_ACCESS_TOKEN = sheet.getRange('B2').getValue();
 var GOOGLEMAP_API_KEY = sheet.getRange('B3').getValue();
 function getLineAccessToken() {
-  //var LINE_ACCESS_TOKEN = ' lineトークンを入力';//lineアクセストークン
+  //var LINE_ACCESS_TOKEN = 'GK+OjvrAUbxXDPTczDgK3GB/ojA6M7dwTGG3lGteUGcKzXeOv1xplqcypgDSbuA1lDYHjKNThHyZ3AO9Zh0jaeweAhIGO6PrHVrI+l9RjSk0HoewDUAbbcGZya9odcOFcW09A8HnB89x0RPbcCjVigdB04t89/1O/w1cDnyilFU=';//lineアクセストークン
   return LINE_ACCESS_TOKEN;
 }
 

@@ -37,6 +37,40 @@ function get_home_address(){
   //return location;
 }
 
+function calculateGohometime(){
+  var origin = getCurrentLocation();
+  var destination = get_home_address();
+  var go_home_time = calculateTravelTime(origin,destination,"WALKING");
+  add_log(go_home_time,B7);
+  return go_home_time;
+}
+
+
+function add_log(text,location) {
+  //シートに記録
+  var spreadsheetId = "1HJF9_ZJZoY06MeUX7nsslr4G3GU-nxOcidFLYOFqTbM"; 
+  var sheetName = "sheet1"; 
+
+  var spreadsheet = SpreadsheetApp.openById(spreadsheetId);
+  if (!spreadsheet) {
+    Logger.log('シートが見つけません');
+    return;
+  }
+  var sheet = spreadsheet.getSheetByName(sheetName);
+  if (!sheet) {
+    Logger.log('シートが見つけません');
+    return;
+  }
+  var secondColumnSize = 350; // B列的列宽
+  sheet.setColumnWidth(2, secondColumnSize);
+
+  var textCell = sheet.getRange(location);
+  textCell.setValue(text);
+
+  // 设置 B6 单元格的对齐方式
+  textCell.setHorizontalAlignment("left");
+}
+
 // 実際の帰宅操作を行う関数
 function go_home() {
     isGoingHome = true;
