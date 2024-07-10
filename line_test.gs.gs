@@ -37,6 +37,9 @@ function handleLineRequest(postData) {
   } else if (userMessage === '帰宅') {
     replyToUser(replyToken, 'shortcuts://run-shortcut?name=帰宅'); 
     go_home();
+  } else if (userMessage === 'エアコンの状態') {
+    var airconStatus = getAirconStatus();
+    replyToUser(replyToken, airconStatus);
   } else if (messageType === 'location') {
     // 位置情報が送信された場合、それを処理
     var latitude = events[0].message.latitude;
@@ -86,6 +89,29 @@ function getCurrentHumidity() {
   var response = UrlFetchApp.fetch(url, options);
   var data = JSON.parse(response.getContentText());
   return data[0].newest_events.hu.val;
+}
+
+function getAirconStatus() {
+  var url = "https://api.nature.global/1/appliances";
+  var options = {
+    "method": "GET",
+    "headers": {
+      "Authorization": "Bearer " + GetREMOACCESSTOKEN()
+    }
+  };
+  var response = UrlFetchApp.fetch(url, options);
+  var data = JSON.parse(response.getContentText());
+  var aircon = data.find(device => device.type === "AC");
+
+  if (!aircon) {
+    return 'エアコンの状態を取得できませんでした。';
+  }
+
+  var status = aircon.settings.button === "power-off" ? "オフ" : "オン";
+  var mode = aircon.settings.mode;
+  var temperature = aircon.settings.temp;
+
+  return `エアコンは現在${status}です。\nモード: ${mode}\n設定温度: ${temperature}度`;
 }
 
 function requestLocation(replyToken) {
