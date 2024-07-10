@@ -17,16 +17,16 @@ function handleLineRequest(postData) {
   var events = postData.events;
   var replyToken = events[0].replyToken;
   var messageType = events[0].message.type;
-  var userMessage = events.message.text;
+  var userMessage = events[0].message.text;
 
   if (userMessage === 'オン') {
+    replyToUser(replyToken, 'エアコンをオンにしました。');
+    stop_go_home(); 
     Airconditioner_ON(); //修正：Airconditioner_ON()すでにメッセージある
-    stop_go_home();
-    replyToUser(replyToken, 'エアコンをオンにしました。'); 
   } else if (userMessage === 'オフ') {
-    Airconditioner_OFF(); //修正：Airconditioner_OFF()すでにメッセージある
-    stop_go_home();
     replyToUser(replyToken, 'エアコンをオフにしました。');
+    stop_go_home();
+    Airconditioner_OFF(); //修正：Airconditioner_OFF()すでにメッセージある
   } else if (userMessage === '気温・湿度') {
     var temperature = getCurrentTemperature();
     var humidity = getCurrentHumidity();

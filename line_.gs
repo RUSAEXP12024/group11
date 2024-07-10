@@ -1,5 +1,5 @@
 //修正：メッセージ内容についての変更
-function doPost(e) {
+/*function doPost(e) {
   var postData = JSON.parse(e.postData.contents);
   var events = postData.events;
   var replyToken = events[0].replyToken;
@@ -9,11 +9,11 @@ function doPost(e) {
   if (userMessage === 'オン') {
     Airconditioner_ON(); //修正：Airconditioner_ON()すでにメッセージある
     stop_go_home();
-    //replyToUser(replyToken, 'エアコンをオンにしました。'); 
+    replyToUser(replyToken, 'エアコンをオンにしました。'); 
   } else if (userMessage === 'オフ') {
     Airconditioner_OFF();　//修正：Airconditioner_OFF()すでにメッセージある
     stop_go_home();
-    //replyToUser(replyToken, 'エアコンをオフにしました。');
+    replyToUser(replyToken, 'エアコンをオフにしました。');
   } else if (userMessage === '気温・湿度') {
     var temperature = getCurrentTemperature();
     var humidity = getCurrentHumidity();
@@ -96,3 +96,4 @@ function replyToUser(replyToken, message) {
   UrlFetchApp.fetch(url, options);
 }
 
+*/
