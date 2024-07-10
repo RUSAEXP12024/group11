@@ -61,7 +61,11 @@ function handleShortcutRequest(value) {
     calculateGohometime();
   } else if (value === 'air_on') {
     Airconditioner_ON();
-  } else {
+  } else if (value === 'clear_data'){
+    add_log("","B6");
+    add_log("","B7");
+  }
+  else {
     add_log(value,"B6");
   }
 

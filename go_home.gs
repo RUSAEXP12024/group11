@@ -33,15 +33,15 @@ function getCurrentLocation() {
 function get_home_address(){
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   var location = sheet.getRange("B4").getValue();  
-  return('34.98291353169776, 135.9621180593622');
-  //return location;
+  //return('34.98291353169776, 135.9621180593622');
+  return location;
 }
 
 function calculateGohometime(){
   var origin = getCurrentLocation();
   var destination = get_home_address();
   var go_home_time = calculateTravelTime(origin,destination,"WALKING");
-  add_log(go_home_time,B7);
+  add_log(go_home_time,"B7");
   return go_home_time;
 }
 
