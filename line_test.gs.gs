@@ -27,7 +27,7 @@ function handleLineRequest(postData) {
     replyToUser(replyToken, 'エアコンをオフにしました。');
     stop_go_home();
     Airconditioner_OFF(); //修正：Airconditioner_OFF()すでにメッセージある
-  } else if (userMessage === '気温・湿度') {
+  } else if (userMessage === '室温・湿度') {
     var temperature = getCurrentTemperature();
     var humidity = getCurrentHumidity();
     replyToUser(replyToken, '現在の室温は ' + temperature + ' 度です。\n現在の湿度は ' + humidity + '% です。');
