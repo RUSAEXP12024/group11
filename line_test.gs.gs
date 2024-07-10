@@ -35,8 +35,10 @@ function handleLineRequest(postData) {
     requestLocation(replyToken);
     getLatLngFromAddress(userMessage);
   } else if (userMessage === '帰宅') {
+    var airconStatus = getAirconStatus();
+    /*ONの場合*/
     replyToUser(replyToken, 'shortcuts://run-shortcut?name=帰宅'); 
-    go_home();
+    
   } else if (userMessage === 'エアコンの状態') {
     var airconStatus = getAirconStatus();
     replyToUser(replyToken, airconStatus);
@@ -59,7 +61,10 @@ function handleShortcutRequest(value) {
     calculateGohometime();
   } else if (value === 'air_on') {
     Airconditioner_ON();
-  } else {
+  } else if(checkLocationFormat(value)) {
+    add_log(value,"B6");
+  }
+    else{
     Logger.log('Unknown value in shortcut request: ' + value);
     throw new Error('Unknown value in shortcut request');
   }
