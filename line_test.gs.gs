@@ -61,13 +61,10 @@ function handleShortcutRequest(value) {
     calculateGohometime();
   } else if (value === 'air_on') {
     Airconditioner_ON();
-  } else if(checkLocationFormat(value)) {
+  } else {
     add_log(value,"B6");
   }
-    else{
-    Logger.log('Unknown value in shortcut request: ' + value);
-    throw new Error('Unknown value in shortcut request');
-  }
+
 }
 
 function getCurrentTemperature() {
