@@ -1,4 +1,3 @@
-var access_token_line = getLineAccessToken();//lineアクセストークン
 var line_userid =''//line userid
 function Airconditioner_messege(messege){
   let data =devicedata();
@@ -25,7 +24,6 @@ function Airconditioner_messege(messege){
   }
   Airconditioner_messegepush(text);
   
-  
 }
 
 function AirconData_messege() {
@@ -44,7 +42,6 @@ function AirconData_messege() {
     text = 'エラー'
   }
   Airconditioner_messegepush(text);
-  
 }
 
 function SensorData_messege() {
@@ -57,13 +54,39 @@ function SensorData_messege() {
           + '湿度;' + deviceData[0].newest_events.hu.val
 
   Airconditioner_messegepush(text);
- 
+
+}
+
+function Sent_AirconData() {
+  let data = getSheet('airconditioner')
+  const lastAirconData = getLastData("airconditioner");　　　　　//最終data取得
+  let rangeLast = data.getRange(lastAirconData-1,5);     //A1セル選択
+  let lastdata = rangeLast.getValue();
+  //let rangeNow = data.getRange(lastAirconData,2,6);     //A1セル選択
+  let dataNow = devicedata();
+  let text = '';
+  
+  if (lastdata == dataNow.ac_state){
+  }else {if(lastdata < dataNow){
+    text = 'onになりました' + '\n'
+          + '設定温度:' + dataNow.appliances1_temp + '\n'
+          + '運転モード;' +dataNow.appliances1_vol +'\n'
+          +'日時:' + dataNow.appliances1_updated_at
+  }else {
+    text = 'offになりました' + '\n'
+          +'日時:' + dataNow.appliances1_updated_at
+  }
+  Airconditioner_messegepush(text);
+  Logger.log(dataNow.ac_state)
+  }
+  recordAirconditionerData();
 }
 
 
 
 function Airconditioner_messegepush(postText){
    const url = 'https://api.line.me/v2/bot/message/push';
+   let access_token_line = getLineAccessToken();
   
   const payload = {
     to: line_userid,　//ユーザーID
@@ -80,6 +103,6 @@ function Airconditioner_messegepush(postText){
     },
     payload: JSON.stringify(payload)
   };
-  UrlFetchApp.fetch(url, params); 
-  //UrlFetchApp.fetch(url, options);
+  UrlFetchApp.fetch(url, params);
+  
 }
