@@ -17,13 +17,13 @@ function handleLineRequest(postData) {
   var events = postData.events;
   var replyToken = events[0].replyToken;
   var messageType = events[0].message.type;
-  var userMessage = messageType === 'text' ? events[0].message.text : '';
+  var userMessage = events.message.text;
 
-  if (userMessage === 'エアコンオン') {
+  if (userMessage === 'オン') {
     Airconditioner_ON(); //修正：Airconditioner_ON()すでにメッセージある
     stop_go_home();
     replyToUser(replyToken, 'エアコンをオンにしました。'); 
-  } else if (userMessage === 'エアコンオフ') {
+  } else if (userMessage === 'オフ') {
     Airconditioner_OFF(); //修正：Airconditioner_OFF()すでにメッセージある
     stop_go_home();
     replyToUser(replyToken, 'エアコンをオフにしました。');
@@ -46,7 +46,7 @@ function handleLineRequest(postData) {
     sheet.getRange("B4").setValue(latLng);
     handleLocation(latitude, longitude, replyToken);
   } else {
-    replyToUser(replyToken, '「エアコンオン」「エアコンオフ」「現在の室温」「現在の湿度」のいずれかを入力してください。');
+    replyToUser(replyToken, '「オン」「オフ」「室温・湿度」「帰宅」「エアコンの状態」「自宅の位置を設定」のいずれかを入力してください。');
   }
 }
 
