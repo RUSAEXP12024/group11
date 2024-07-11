@@ -1,4 +1,4 @@
-var line_userid =''//line userid
+var line_userid =Get_line_usr_id();//line userid
 function Airconditioner_messege(messege){
   let data =devicedata();
   let text = '';
@@ -89,7 +89,7 @@ function Airconditioner_messegepush(postText){
    let access_token_line = getLineAccessToken();
   
   const payload = {
-    to: line_userid,　//ユーザーID
+    to: Get_line_usr_id(),　//ユーザーID
     messages: [
       { type: 'text', text: postText}
     ]

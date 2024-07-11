@@ -18,16 +18,16 @@ function handleLineRequest(postData) {
   var replyToken = events[0].replyToken;
   var messageType = events[0].message.type;
   var userMessage = events[0].message.text;
+  var userId = events[0].source.userId;
+  add_log(userId,"B8")
 
   if (userMessage === 'オン') {
-    replyToUser(replyToken, 'エアコンをオンにしました。');
-    stop_go_home(); 
-    Airconditioner_ON(); //修正：Airconditioner_ON()すでにメッセージある
+    //replyToUser(replyToken, 'エアコンをオンにしました。');
+    Airconditioner_ON(); 
   } else if (userMessage === 'オフ') {
-    replyToUser(replyToken, 'エアコンをオフにしました。');
-    stop_go_home();
-    Airconditioner_OFF(); //修正：Airconditioner_OFF()すでにメッセージある
-  } else if (userMessage === '室温・湿度') {
+    //replyToUser(replyToken, 'エアコンをオフにしました。');
+    Airconditioner_OFF(); 
+  } else if (userMessage === '気温・湿度') {
     var temperature = getCurrentTemperature();
     var humidity = getCurrentHumidity();
     replyToUser(replyToken, '現在の室温は ' + temperature + ' 度です。\n現在の湿度は ' + humidity + '% です。');
@@ -36,8 +36,13 @@ function handleLineRequest(postData) {
     getLatLngFromAddress(userMessage);
   } else if (userMessage === '帰宅') {
     var airconStatus = getAirconStatus();
-    /*ONの場合*/
-    replyToUser(replyToken, 'shortcuts://run-shortcut?name=帰宅'); 
+    /*OFFの場合*/
+    if(!checkAirconStatus(airconStatus)){
+      replyToUser(replyToken, 'shortcuts://run-shortcut?name=帰宅'); 
+    }
+    else{
+      replyToUser(replyToken, 'エアコンはすでにonです'); 
+    }
     
   } else if (userMessage === 'エアコンの状態') {
     var airconStatus = getAirconStatus();
@@ -51,9 +56,22 @@ function handleLineRequest(postData) {
     sheet.getRange("B4").setValue(latLng);
     handleLocation(latitude, longitude, replyToken);
   } else {
-    replyToUser(replyToken, '「オン」「オフ」「室温・湿度」「帰宅」「エアコンの状態」「自宅の位置を設定」のいずれかを入力してください。');
+    replyToUser(replyToken, '「オン」「オフ」「気温・湿度」「帰宅」「エアコンの状態」「自宅の位置を設定」のいずれかを入力してください。');
   }
 }
+
+
+function checkAirconStatus(message) {
+  if (message.includes("オン")) {
+    return true;
+  } else if (message.includes("オフ")) {
+    return false;
+  } else {
+    throw new Error("エアコン状態読み取りません");
+  }
+}
+
+
 
 function handleShortcutRequest(value) {
   // Shortcutsからのリクエストを処理
