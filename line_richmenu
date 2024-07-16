@@ -1,0 +1,83 @@
+{
+  "size": {
+    "width": 2500,
+    "height": 1686
+  },
+  "selected": true,
+  "name": "richmenu1",
+  "chatBarText": "TAP",
+  "areas": [
+    {
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "width": 832,
+        "height": 843
+      },
+      "action": {
+        "type": "message",
+        "text": "オン"
+      }
+    },
+        {
+      "bounds": {
+        "x": 832,
+        "y": 0,
+        "width": 832,
+        "height": 843
+      },
+      "action": {
+        "type": "message",
+        "text": "オフ"
+      }
+    },
+        {
+      "bounds": {
+        "x": 1664,
+        "y": 0,
+        "width": 832,
+        "height": 843
+      },
+      "action": {
+        "type": "message",
+        "text": "帰宅"
+      }
+    },
+        {
+      "bounds": {
+        "x": 0,
+        "y": 843,
+        "width": 832,
+        "height": 843
+      },
+      "action": {
+        "type": "message",
+        "text": "室温・湿度"
+      }
+    },
+        {
+      "bounds": {
+        "x": 832,
+        "y": 843,
+        "width": 832,
+        "height": 843
+      },
+      "action": {
+        "type": "message",
+        "text": "エアコンの状態"
+      }
+    },
+        {
+      "bounds": {
+        "x": 1664,
+        "y": 843,
+        "width": 832,
+        "height": 843
+      },
+      "action": {
+        "type": "message",
+        "text": "自宅の位置を設定"
+      }
+    }
+  ]
+}
