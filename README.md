@@ -3,8 +3,8 @@
 
 ```
 Remo・家電操作
-|-REMO_ACCESS_TOKEN.gs    //Remoのアクセストークンを管理する
-|-time_set.gs             //指定した時間にプログラムが起動するトリガーを作成する
+|-REMO_ACCESS_TOKEN.gs    //Remoのアクセストークンを管理する(実装しない）
+|-time_set.gs             //指定した時間にプログラムが起動するトリガーを作成する(実装しない）
 |-air_conditioner.gs      //エアコンのオン・オフを管理する
 |-Airconditionerdata.gs   //エアコンのオンオフや設定温度などといったデータを取得する
 |-get_deviceID.gs         //remoからデバイスidを取得する
