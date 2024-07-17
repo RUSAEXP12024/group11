@@ -21,7 +21,7 @@ line
 
 
 short cut
-https://www.icloud.com/shortcuts/f558f84159d1452daf612cef2ed361c0 //帰宅機能の実現
+https://www.icloud.com/shortcuts/a63922a857f644c4883c1c51a3524ed1 //帰宅機能の実現
 ```
 
 
