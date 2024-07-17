@@ -46,8 +46,8 @@ function calculateGohometime(){
 }
 
 
+//シートに記録
 function add_log(text,location) {
-  //シートに記録
   var spreadsheetId = "1HJF9_ZJZoY06MeUX7nsslr4G3GU-nxOcidFLYOFqTbM"; 
   var sheetName = "sheet1"; 
 
@@ -61,13 +61,11 @@ function add_log(text,location) {
     Logger.log('シートが見つけません');
     return;
   }
-  var secondColumnSize = 350; // B列的列宽
+  var secondColumnSize = 350; 
   sheet.setColumnWidth(2, secondColumnSize);
 
   var textCell = sheet.getRange(location);
   textCell.setValue(text);
-
-  // 设置 B6 单元格的对齐方式
   textCell.setHorizontalAlignment("left");
 }
 
@@ -100,7 +98,7 @@ function go_home() {
         console.error('位置情報のフォーマットが正しくありません');
     }
 }
-
+/***** 
 function stop_go_home(){
   if (isGoingHome){
     isGoingHome =false;
@@ -120,7 +118,7 @@ function stopAllTriggers() {
     console.log('全てのトリガーが停止されました。');
 }
 
-
+********/
 
 
 
